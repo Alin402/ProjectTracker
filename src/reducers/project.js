@@ -43,14 +43,17 @@ export default function(state = initialState, action) {
                 ...state,
                 projects: payload
             }
-        case CLEAR_PROJECT:
         case PROJECT_FAIL:
             return {
                 ...state,
                 projects: [],
-                project: {},
                 loading: false
             }
+        case CLEAR_PROJECT:
+             return {
+                 ...state,
+                project: {}
+             }
         default: return state
     }
 }

@@ -7,6 +7,7 @@ import Alert from './components/alert/Alert';
 import ProjectList from './components/Projects/ProjectList';
 import AddProject from './components/addproject/AddProject';
 import Project from './components/Projects/Project';
+import PopupModal from './components/Projects/PopupModal';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Fragment>
         <Navbar />
         <section style={{marginTop: '4rem'}}>
+          <PopupModal />
         <Alert />
           <Switch>
             <Route exact path='/' component={ProjectList} />

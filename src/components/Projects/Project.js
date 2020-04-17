@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProject, addAssignment, deleteProject } from '../../actions/project';
 import Assignment from './Assignment';
 
-const Project = ({ project: { project, loading }, getProject, addAssignment, deleteProject, match, history }) => {
+const Project = ({ project: { project, loading }, getProject, addAssignment, match }) => {
     useEffect(() => {
         getProject(match.params.id);
     }, [getProject, match.params.id]);
@@ -17,10 +17,7 @@ const Project = ({ project: { project, loading }, getProject, addAssignment, del
             <Link to='/' className='btn btn-info'>Go Back To Projects</Link>
             <h2 className='text-center'>{project.name}</h2>
             <h2 className='text-center'><span className='text-warning'>{project.assignments && project.assignments.length}</span> assignments</h2>
-            <button className='btn btn-danger' onClick={() => {
-                deleteProject(project._id)
-                history.push('/');
-                }}>
+            <button className='btn btn-danger' data-toggle='modal' data-target='#popup' >
                 <i className='fa fa-times'></i> {' '}
                 Delete Project
             </button>
@@ -79,11 +76,10 @@ Project.propTypes = {
     project: PropTypes.object.isRequired,
     addAssignment: PropTypes.func.isRequired,
     getProject: PropTypes.func.isRequired,
-    deleteProject: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
     project: state.project
 });
 
-export default connect(mapStateToProps, { getProject, addAssignment, deleteProject })(withRouter(Project));
+export default connect(mapStateToProps, { getProject, addAssignment })(Project);
