@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
+import Navbar from './components/navbar/Navbar';
+import Alert from './components/alert/Alert';
+import ProjectList from './components/Projects/ProjectList';
+import AddProject from './components/addproject/AddProject';
+import Project from './components/Projects/Project';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Provider store={store}>
+      <Fragment>
+        <Navbar />
+        <section style={{marginTop: '4rem'}}>
+        <Alert />
+          <Switch>
+            <Route exact path='/' component={ProjectList} />
+            <Route exact path='/add-project' component={AddProject} />
+            <Route exact path='/project/:id' component={Project} />
+          </Switch>
+        </section>
+      </Fragment>
+    </Provider>
+  )
 }
 
 export default App;
+
