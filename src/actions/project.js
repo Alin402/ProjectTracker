@@ -5,7 +5,8 @@ import {
     ADD_ASSIGNMENT,
     UPDATE_ASSIGNMENT,
     DELETE_ASSIGNMENT,
-    DELETE_PROJECT
+    DELETE_PROJECT,
+    CLEAR_PROJECT
 } from './types';
 import axios from 'axios';
 import { setAlert } from './alert';
@@ -50,6 +51,9 @@ export const addProject = (name, deadline, assignments) => async dispatch => {
 }
 
 export const getProject = (id) => async dispatch => {
+    dispatch({
+        type: CLEAR_PROJECT
+    });
     try {
         const res = await axios.get(`https://nameless-bayou-58074.herokuapp.com/projects/${id}`);
 

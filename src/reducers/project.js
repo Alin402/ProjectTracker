@@ -5,7 +5,8 @@ import {
     ADD_ASSIGNMENT,
     UPDATE_ASSIGNMENT,
     DELETE_ASSIGNMENT,
-    DELETE_PROJECT
+    DELETE_PROJECT,
+    CLEAR_PROJECT
 } from '../actions/types';
 
 const initialState = {
@@ -42,10 +43,12 @@ export default function(state = initialState, action) {
                 ...state,
                 projects: payload
             }
+        case CLEAR_PROJECT:
         case PROJECT_FAIL:
             return {
                 ...state,
                 projects: [],
+                project: {},
                 loading: false
             }
         default: return state
