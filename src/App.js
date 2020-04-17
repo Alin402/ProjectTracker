@@ -16,7 +16,7 @@ const App = () => {
         <section style={{marginTop: '4rem'}}>
         <Alert />
           <Switch>
-            <Route exact path='/' component={ProjectList} />
+            <Route exact path='/ProjectTracker' component={ProjectList} />
             <Route exact path='/add-project' component={AddProject} />
             <Route exact path='/project/:id' component={Project} />
           </Switch>
