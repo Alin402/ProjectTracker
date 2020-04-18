@@ -13,7 +13,7 @@ import { setAlert } from './alert';
 
 export const getProjects = () => async dispatch => {
     try {
-        const res = await axios.get('https://nameless-bayou-58074.herokuapp.com/projects');
+        const res = await axios.get('https://projecttracker2.herokuapp.com/projects');
 
         dispatch({
             type: GET_PROJECTS,
@@ -37,7 +37,7 @@ export const addProject = (name, deadline, assignments) => async dispatch => {
     const body = JSON.stringify({ name, deadline, assignments });
 
     try {
-        await axios.post('https://nameless-bayou-58074.herokuapp.com/projects', body, config);
+        await axios.post('https://projecttracker2.herokuapp.com/projects', body, config);
         dispatch(setAlert('Project added', 'success'));
     } catch (err) {
         console.log(err);
@@ -55,7 +55,7 @@ export const getProject = (id) => async dispatch => {
         type: CLEAR_PROJECT
     });
     try {
-        const res = await axios.get(`https://nameless-bayou-58074.herokuapp.com/projects/${id}`);
+        const res = await axios.get(`https://projecttracker2.herokuapp.com/projects/${id}`);
 
         dispatch({
             type: GET_PROJECT,
@@ -71,7 +71,7 @@ export const getProject = (id) => async dispatch => {
 
 export const addAssignment = (id, name) => async dispatch => {
     try {
-        const res = await axios.post(`https://nameless-bayou-58074.herokuapp.com/projects/${id}`, JSON.stringify({ name }), {
+        const res = await axios.post(`https://projecttracker2.herokuapp.com/projects/${id}`, JSON.stringify({ name }), {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -99,7 +99,7 @@ export const addAssignment = (id, name) => async dispatch => {
 
 export const updateAssignment = (id, taskId , field) => async dispatch => {
     try {
-        const res = await axios.put(`https://nameless-bayou-58074.herokuapp.com/projects/${id}/${taskId}`, JSON.stringify({ field }), {
+        const res = await axios.put(`https://projecttracker2.herokuapp.com/projects/${id}/${taskId}`, JSON.stringify({ field }), {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -119,7 +119,7 @@ export const updateAssignment = (id, taskId , field) => async dispatch => {
 
 export const deleteAssignment = (id, taskId) => async dispatch => {
     try {
-        const res = await axios.delete(`https://nameless-bayou-58074.herokuapp.com/projects/${id}/${taskId}`);
+        const res = await axios.delete(`https://projecttracker2.herokuapp.com/projects/${id}/${taskId}`);
 
         dispatch({
             type: DELETE_ASSIGNMENT,
@@ -135,7 +135,7 @@ export const deleteAssignment = (id, taskId) => async dispatch => {
 
 export const deleteProject = (id) => async dispatch => {
     try {
-        const res = await axios.delete(`https://nameless-bayou-58074.herokuapp.com/projects/${id}`);
+        const res = await axios.delete(`https://projecttracker2.herokuapp.com/projects/${id}`);
 
         dispatch({
             type: DELETE_PROJECT,

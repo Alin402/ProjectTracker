@@ -10,7 +10,7 @@ const ProjectItem = ({ project }) => {
     useEffect(() => {
         const verifyProject = async () => {
             try {
-                await axios.put(`https://nameless-bayou-58074.herokuapp.com/projects/${project._id}`);
+                await axios.put(`https://projecttracker2.herokuapp.com/projects/${project._id}`);
             } catch (err) {
                 console.log(err);
             }
