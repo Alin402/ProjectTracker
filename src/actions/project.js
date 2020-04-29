@@ -152,7 +152,7 @@ export const deleteProject = (id) => async dispatch => {
 
 export const updateDeadline = (id, deadline) => async dispatch => {
     try {
-        await axios.post(`http://localhost:3002/projects/deadline/${id}`, JSON.stringify({ deadline }), {
+        await axios.post(`https://projecttracker2.herokuapp.com/projects/deadline/${id}`, JSON.stringify({ deadline }), {
             headers: {
                 'Content-Type': 'application/json'
             }
