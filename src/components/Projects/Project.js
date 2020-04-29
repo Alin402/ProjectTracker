@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getProject, addAssignment, deleteProject } from '../../actions/project';
+import { getProject, addAssignment, updateDeadline } from '../../actions/project';
 import Assignment from './Assignment';
 
-const Project = ({ project: { project, loading }, getProject, addAssignment, match }) => {
+const Project = ({ project: { project, loading }, getProject, addAssignment, match, updateDeadline }) => {
     useEffect(() => {
         getProject(match.params.id);
     }, [getProject, match.params.id]);
 
     const [content, setContent] = useState('');
+    const [deadline, setDeadline] = useState(new Date().toString());
 
-    return loading ? <h1>Loading...</h1> : (
+    return loading ? <h1>Loading...</h1> : project && (
         <div className='container-fluid'>
             <Link to='/' className='btn btn-info'>Go Back To Projects</Link>
             <h2 className='text-center'>{project.name}</h2>
@@ -20,6 +21,12 @@ const Project = ({ project: { project, loading }, getProject, addAssignment, mat
             <button className='btn btn-danger' data-toggle='modal' data-target='#popup' >
                 <i className='fa fa-times'></i> {' '}
                 Delete Project
+            </button>
+            <input value={deadline} onChange={e => setDeadline(e.target.value)} type='date' className='ml-3 form-control'
+                style={{width: '11rem', display: 'inline-block'}} 
+            />
+            <button onClick={() => updateDeadline(project._id, deadline)} className='btn btn-primary ml-3'>
+                Update deadline
             </button>
             <div className='row mt-2 p-2'>
                 <div className='col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 p-3'>
@@ -76,10 +83,11 @@ Project.propTypes = {
     project: PropTypes.object.isRequired,
     addAssignment: PropTypes.func.isRequired,
     getProject: PropTypes.func.isRequired,
+    updateDeadline: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
     project: state.project
 });
 
-export default connect(mapStateToProps, { getProject, addAssignment })(Project);
+export default connect(mapStateToProps, { getProject, addAssignment, updateDeadline })(Project);

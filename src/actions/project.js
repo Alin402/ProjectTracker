@@ -149,3 +149,17 @@ export const deleteProject = (id) => async dispatch => {
         });
     }
 }
+
+export const updateDeadline = (id, deadline) => async dispatch => {
+    try {
+        await axios.post(`http://localhost:3002/projects/deadline/${id}`, JSON.stringify({ deadline }), {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        dispatch(setAlert('Project updated', 'success'));
+    } catch (err) {
+        console.log(err);
+        dispatch(setAlert(err.response.data.msg, 'danger'));
+    }
+}

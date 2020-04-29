@@ -6,7 +6,7 @@ import { deleteProject } from '../../actions/project';
 
 const PopupModal = ({ deleteProject, project: { project }, history }) => {
     return (
-        <div className="modal fade" id='popup' tabindex="-1" role="dialog">
+        <div className="modal fade" id='popup' tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">
             <div className="modal-content">
             <div className="modal-header">
