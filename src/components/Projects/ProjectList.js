@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import ProjectItem from './ProjectItem';
 import { connect } from 'react-redux';
 import { getProjects } from '../../actions/project';
+import { Spinner } from '../spinner/Spinner';
 
 const ProjectList = ({ getProjects, project: { projects, loading } }) => {
     useEffect(() => {
         getProjects();
     }, [loading, getProjects]);
-    return loading ? <h1>Loading...</h1>  : (
+    return loading ? <Spinner />  : (
         <div className='container'>
             <div className='row'>
                 {

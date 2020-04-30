@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProject, addAssignment, updateDeadline } from '../../actions/project';
 import Assignment from './Assignment';
+import { Spinner } from '../spinner/Spinner';
 
 const Project = ({ project: { project, loading }, getProject, addAssignment, match, updateDeadline }) => {
     useEffect(() => {
@@ -13,7 +14,7 @@ const Project = ({ project: { project, loading }, getProject, addAssignment, mat
     const [content, setContent] = useState('');
     const [deadline, setDeadline] = useState(new Date().toString());
 
-    return loading ? <h1>Loading...</h1> : project && (
+    return loading ? <Spinner /> : project && (
         <div className='container-fluid'>
             <Link to='/' className='btn btn-info'>Go Back To Projects</Link>
             <h2 className='text-center'>{project.name}</h2>

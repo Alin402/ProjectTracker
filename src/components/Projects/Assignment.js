@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateAssignment, deleteAssignment } from '../../actions/project';
+import { Spinenr, Spinner } from '../spinner/Spinner';
 
 const Assignment = ({ id,  assignment, updateAssignment, deleteAssignment }) => {
-    return (
+    return !assignment ? <Spinner small /> : (
         <div className='bg-light mt-1 p-3 rounded' style={{width: '100%'}}>
             <div>
                 <p>
